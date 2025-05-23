@@ -338,6 +338,79 @@
             font-size: 17px; /* Increased from 16px */
         }
 
+        /* Publications Toggle Styles */
+        .publications-controls {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: var(--highlight-bg);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .toggle-container input[type="checkbox"] {
+            display: none;
+        }
+
+        .toggle-slider {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: #ccc;
+            border-radius: 24px;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .toggle-container input:checked + .toggle-slider {
+            background: var(--primary-color);
+        }
+
+        .toggle-container input:checked + .toggle-slider::before {
+            transform: translateX(26px);
+        }
+
+        .toggle-label {
+            font-weight: bold;
+            color: var(--text-color);
+            font-size: 15px;
+        }
+
+        .toggle-description {
+            display: block;
+            color: #666;
+            font-size: 13px;
+            margin-top: 0.3rem;
+            margin-left: 58px;
+        }
+
+        .pub-hidden {
+            display: none;
+        }
+
+        .show-all .pub-hidden {
+            display: table-row;
+        }
+
         ul {
             margin-left: 2rem;
             margin-bottom: 1rem;
@@ -528,6 +601,16 @@
                 </table>
 
                 <h2 id="publications">Publications</h2>
+                
+                <div class="publications-controls">
+                    <label class="toggle-container">
+                        <input type="checkbox" id="selectedToggle" checked>
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-label">Show Selected Publications Only</span>
+                    </label>
+                    <small class="toggle-description">Toggle to view all publications or just selected highlights</small>
+                </div>
+                
                 <table class="publication-table">
                     <tr>
                         <td class="year-cell">Usenix Security'25</td>
@@ -537,7 +620,7 @@
                         <td class="year-cell">OOPSLA'24</td>
                         <td>Refinement Type Refutations. Robin Webbers, <u>Klaus v. Gleissenthall</u>, Ranjit Jhala. [<a href="papers/refinement-refutations.pdf">PDF</a>][<a href="https://vusecpl.github.io/2024-06-29-type-refutations/">Blog</a>]</td>
                     </tr>
-                    <tr>
+                    <tr class="pub-hidden">
                         <td class="year-cell">IEEE TDSC'24</td>
                         <td>InvisiGuard: Data Integrity for Microcontroller-Based Devices via Hardware-Triggered Write Monitoring. Dongliang Fang, Anni Peng, Le Guan, Erik van der Kouwe, <u>Klaus v. Gleissenthall</u>, Wenwen Wang, Yuqing Zhang, Limin Sun. [<a href="papers/invisiguard.pdf">PDF</a>]</td>
                     </tr>
@@ -549,7 +632,7 @@
                         <td class="year-cell">PLDI'23</td>
                         <td>Don't Look UB: Exposing Sanitizer-Eliding Compiler Optimizations. Raphael Isemann, Cristiano Giuffrida, Herbert Bos, Erik van der Kouwe, <u>Klaus v. Gleissenthall</u>. [<a href="papers/dontlookub.pdf">PDF</a>]</td>
                     </tr>
-                    <tr>
+                    <tr class="pub-hidden">
                         <td class="year-cell">ACSAC'23</td>
                         <td>Triereme: Speeding up hybrid fuzzing through efficient query scheduling. Elia Geretto, Julius Hohnerlein, Cristiano Giuffrida, Herbert Bos, Erik Van Der Kouwe, <u>Klaus v. Gleissenthall</u>. [<a href="papers/triereme.pdf">PDF</a>]</td>
                     </tr>
@@ -557,7 +640,7 @@
                         <td class="year-cell">OOPSLA'23</td>
                         <td>Randomized Testing of Byzantine Fault Tolerant Algorithms. L. Winter, F. Buse, D. de Graaf, <u>Klaus v. Gleissenthall</u>, B. Kulahcioglu Ozkan. <span class="award-emoji">🏆</span> Distinguished Paper Award. [<a href="papers/byzzfuzz.pdf">PDF</a>]</td>
                     </tr>
-                    <tr>
+                    <tr class="pub-hidden">
                         <td class="year-cell">LATTE'22</td>
                         <td>Refinement Types for Hardware. Robin Webbers, <u>Klaus v. Gleissenthall</u>.</td>
                     </tr>
@@ -597,7 +680,7 @@
                         <td class="year-cell">CONCUR'13</td>
                         <td>An Epistemic Perspective on Consistency of Concurrent Computations. <u>Klaus v. Gleissenthall</u> and Andrey Rybalchenko. [<a href="papers/CONCUR13.pdf">PDF</a>][<a href="papers/CONCUR13Slides.pdf">Slides</a>]</td>
                     </tr>
-                    <tr>
+                    <tr class="pub-hidden">
                         <td class="year-cell">KI'11</td>
                         <td>Bayesian Logic Networks and the Search for Samples with Backward Simulation and Abstract Constraint Learning. Dominik Jain, <u>Klaus v. Gleissenthall</u> and Michael Beetz.</td>
                     </tr>
@@ -653,6 +736,28 @@
                     el.style.transform = 'translateY(0)';
                 }, 100);
             });
+        });
+
+        // Publications toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.getElementById('selectedToggle');
+            const publicationTable = document.querySelector('.publication-table');
+            
+            function updatePublications() {
+                if (toggle.checked) {
+                    // Show selected publications only
+                    publicationTable.classList.remove('show-all');
+                } else {
+                    // Show all publications
+                    publicationTable.classList.add('show-all');
+                }
+            }
+            
+            // Set initial state (selected publications only)
+            updatePublications();
+            
+            // Add event listener for toggle changes
+            toggle.addEventListener('change', updatePublications);
         });
     </script>
 </body>
