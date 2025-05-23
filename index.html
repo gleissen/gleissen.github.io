@@ -1,342 +1,657 @@
-<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html> <head>
-<title>Klaus v. Gleissenthall</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klaus von Gleissenthall</title>
+    <style>
+        :root {
+            --primary-color: #7a8db8;
+            --accent-color: #008060;
+            --link-color: #00e6ac;
+            --hover-color: #9bb5d6;
+            --text-color: #444;
+            --bg-color: #fdfcfb;
+            --shadow-light: rgba(0,0,0,0.08);
+            --highlight-bg: #f2f4f8;
+            --card-bg: #fbfaf9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            background: var(--bg-color);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.6;
+            color: var(--text-color);
+            font-size: 14px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Times New Roman', serif;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: normal;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .profile-section {
+            position: sticky;
+            top: 2rem;
+        }
+
+        .portrait-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .portrait {
+            width: 280px;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow-light);
+        }
+
+        .portrait:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .content-section {
+            max-width: none;
+        }
+
+        .intro-text {
+            font-size: 15px;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .quick-links a {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .quick-links a:hover {
+            background: #6779a3;
+            transform: translateY(-1px);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--highlight-bg) 0%, #e8ecf3 100%);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .team-member {
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px var(--shadow-light);
+            transition: transform 0.2s ease;
+            border: 1px solid #f0ede9;
+        }
+
+        .team-member:hover {
+            transform: translateY(-2px);
+        }
+
+        .news-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--card-bg);
+            border-radius: 6px;
+            box-shadow: 0 2px 8px var(--shadow-light);
+            transition: transform 0.2s ease;
+            border: 1px solid #f0ede9;
+        }
+
+        .news-item:hover {
+            transform: translateX(5px);
+        }
+
+        .award-emoji {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+
+        .publication-table {
+            width: 100%;
+            margin: 1rem 0;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .publication-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .publication-table tr:hover {
+            background: rgba(0, 230, 172, 0.05);
+        }
+
+        .year-cell {
+            font-weight: bold;
+            color: var(--primary-color);
+            white-space: nowrap;
+            width: 120px;
+        }
+
+        .service-table {
+            width: 100%;
+            margin: 1rem 0;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .service-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .service-table tr:hover {
+            background: rgba(0, 128, 96, 0.05);
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:visited {
+            color: var(--link-color);
+        }
+
+        a:hover {
+            color: #4d4dff;
+            text-decoration: underline;
+        }
+
+        .topics a {
+            color: var(--accent-color);
+        }
+
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .header-row h1 {
+            margin: 0;
+            flex: 1;
+        }
+
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-button {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px var(--shadow-light);
+        }
+
+        .nav-button:hover {
+            background: #6779a3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .nav-arrow {
+            transition: transform 0.3s ease;
+            font-size: 12px;
+        }
+
+        .nav-dropdown.open .nav-arrow {
+            transform: rotate(180deg);
+        }
+
+        .nav-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            min-width: 220px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-top: 0.5rem;
+        }
+
+        .nav-dropdown.open .nav-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-item {
+            display: block;
+            padding: 0.8rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s ease;
+        }
+
+        .nav-item:last-child {
+            border-bottom: none;
+        }
+
+        .nav-item:hover {
+            background: #f8f9fa;
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .nav-item:visited {
+            color: var(--text-color);
+        }
+
+        .nav-item:visited:hover {
+            color: var(--primary-color);
+        }
+
+        .job-highlight {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 16px;
+        }
+
+        ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .profile-section {
+                position: static;
+                text-align: center;
+            }
+
+            .portrait {
+                width: 220px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .quick-links {
+                justify-content: center;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 13px;
+            }
+
+            .portrait {
+                width: 180px;
+            }
+
+            .publication-table td,
+            .service-table td {
+                padding: 0.5rem;
+                font-size: 12px;
+            }
+        }
+
+        /* Animation for smooth loading */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div class="main-content">
+            <div class="profile-section">
+                <div class="portrait-container">
+                    <img id="portrait" src="pic.jpg" alt="Klaus von Gleissenthall" class="portrait" onclick="togglePortrait()">
+                </div>
+            </div>
 
-<style type="text/css">
-html { background: white; margin:0;}
- body { font-family: 'Courier New', Courier; "Times New Roman" }
-h1 {font-family: 'Times New Roman';}
-h2 {font-family: 'Times New Roman';}
-#wrap {
-   width:850px;
-   margin:0 auto;
-}
-#left_col {
-   float:left;
-   width:300px;
-}
-#right_col {
-   float:right;
-   width:550px;
-}
-.jobfont {
-font-weight:bold;
-color:#e62a00;
-}
+            <div class="content-section fade-in">
+                <!-- Header with Name and Menu -->
+                <div class="header-row">
+                    <h1>Klaus von Gleissenthall</h1>
+                    <div class="nav-dropdown" id="navDropdown">
+                        <button class="nav-button" onclick="toggleNav()">
+                            📋 Menu
+                        </button>
+                        <div class="nav-menu">
+                            <a href="#news" class="nav-item">📰 Recent News</a>
+                            <a href="#team" class="nav-item">👥 Research Team</a>
+                            <a href="#bio" class="nav-item">📖 Bio</a>
+                            <a href="#service" class="nav-item">🏛️ Service</a>
+                            <a href="#publications" class="nav-item">📚 Publications</a>
+                            <a href="cv.pdf" class="nav-item">📄 Download CV</a>
+                            <a href="mailto:kfl900@vu.nl" class="nav-item">✉️ Contact</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="intro-text">
+                    I am a tenured Assistant Professor in Computer Science at the <a href="http://www.vu.nl/">Vrije Universiteit Amsterdam</a>, where I work with the <a href="https://www.cs.vu.nl/~tcs/">theory group</a> and <a href="https://www.vusec.net/people/">VUSec</a>. I'm also affiliated with the <a href="https://www.cwi.nl/en/groups/computer-security/">Computer Security</a> group at <a href="https://www.cwi.nl/en">CWI</a>.
+                    <br><br>
+                    I work on methods that help practitioners write correct, secure and reliable systems, where I focus on keeping user effort low. My research interests span programming languages, security and systems.
+                </div>
 
-.topics a {color: #008060;} /* un-visited link */
-a:link {color:#00e6ac;} /* visited link */
-a:visited {color:#00e6ac;} /* visited link */
-a:hover {color:#4d4dff;}   /* mouse over link */
-td { padding: 10px; text-align: left;}
-</style>
-<script>
-function toggle() {
-    var image = document.getElementById('portrait');
-    if (image.src.match("pic.jpg")) {
-        image.src = "pic2.jpg";
-}
-else if (image.src.match("pic2.jpg")){
-image.src = "pic3.jpg";
-}
-else if (image.src.match("pic3.jpg")){
-image.src = "pic4.jpg";
-}
-else if (image.src.match("pic4.jpg")){
-image.src = "pic5.jpg";
-}
-else if (image.src.match("pic5.jpg")){
-image.src = "pic.jpg";
-}
-else if (image.src.match("pic6.jpg")){
-image.src = "pic.jpg";
-}
-}
-</script>
+                <div class="quick-links">
+                    <a href="cv.pdf">📄 CV</a>
+                    <a href="mailto:kfl900@vu.nl">✉️ Email</a>
+                    <a href="papers/statement.pdf">🔬 Research Statement</a>
+                    <a href="papers/teaching-statement.pdf">🎓 Teaching Statement</a>
+                    <a href="https://vusecpl.github.io">📝 Blog</a>
+                </div>
 
-<div id="wrap">
+                <div class="highlight-box">
+                    <div class="job-highlight">Open Positions:</div>
+                    I'm looking for students at all levels. I have open positions for PhDs and post-docs. If you're interested in the intersection of Security, Programming Languages and Formal Verification, please email me.
+                </div>
 
-    <div id="left_col">
-      <br><br>
-      <img id="portrait" src="pic.jpg" onclick="toggle()" width="250"
-      align="left">
+                <h2 id="team">Research Team</h2>
+                <p>I'm currently working with this talented group of researchers:</p>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <strong>Robin Webbers</strong><br>
+                        PhD Student (2022-)
+                    </div>
+                    <div class="team-member">
+                        <strong>Alp Adnan Basar</strong><br>
+                        PhD Student (2024-)
+                    </div>
+                    <div class="team-member">
+                        <strong><a href="https://lpferreirinha.com/">Luís Ferreirinha</a></strong><br>
+                        PhD Student (2024-)
+                    </div>
+                    <div class="team-member">
+                        <strong>Zunchen Huang</strong><br>
+                        Post-doc (2024-)
+                    </div>
+                    <div class="team-member">
+                        <strong><a href="https://rschenck.com/">Robert Schenck</a></strong><br>
+                        Post-doc (2025-)
+                    </div>
+                </div>
+
+                <h2 id="news">Recent News</h2>
+                
+                <div class="news-item">
+                    <span class="award-emoji">🏆🏆🏆</span> I've been awarded the <a href="https://erc.europa.eu/news-events/news/erc-2023-starting-grants-results">ERC Starting Grant</a> (1.5 Mio € personal grant) for my research on building side-channel free systems. I will be hiring soon, please reach out if you're interested.
+                </div>
+
+                <div class="news-item">
+                    Our <a href="papers/refinement-refutations.pdf">paper</a> on refinement type refutations has been accepted at <a href="https://2024.splashcon.org/track/splash-2024-oopsla">OOPSLA'24</a>. Check out this <a href="https://vusecpl.github.io/2024-06-29-type-refutations/">blog post</a> where we describe the ideas.
+                </div>
+
+                <div class="news-item">
+                    <span class="award-emoji">🏆</span> Our paper on <a href="papers/ccs2023.pdf">verifying leakage contracts for hardware</a> received an honorable mention in the Intel hardware security award'24.
+                </div>
+
+                <div class="news-item">
+                    <span class="award-emoji">🏆</span> Our paper on <a href="papers/ccs2023.pdf">verifying leakage contracts for hardware</a> has received a distinguished paper award at <a href="https://www.sigsac.org/ccs/CCS2023/call-for-paper.html">CCS'23</a>.
+                </div>
+
+                <div class="news-item">
+                    <span class="award-emoji">🏆</span> Our paper "Randomized Testing of Byzantine Fault Tolerant Algorithms" has been awarded a distinguished paper award at <a href="https://2023.splashcon.org/track/splash-2023-oopsla">OOPSLA'23</a>.
+                </div>
+
+                <h2 id="bio">Bio</h2>
+                <p>Before coming to the <a href="http://www.vu.nl/">VU</a>, I was a post-doc in the <a href="http://cseweb.ucsd.edu/groups/progsys/">Programming Systems</a> group at <a href="http://ucsd.edu/">UCSD</a> where I worked with <a href="http://ranjitjhala.github.io">Ranjit Jhala</a> and <a href="http://cseweb.ucsd.edu/~dstefan/">Deian Stefan</a>. Before that, I was a PhD student at <a href="http://www.tum.de">TUM</a> where I was advised by <a href="http://research.microsoft.com/en-us/people/rybal/">Andrey Rybalchenko</a> and funded through a <a href="http://research.microsoft.com/">Microsoft Research</a> scholarship. During my PhD I worked at <a href="http://research.microsoft.com/en-us/labs/cambridge/">Microsoft Research Cambridge</a> as an intern and spent some more time there as a visitor. I received both a BSc. and MSc. in computer science from TUM with a minor in logic and philosophy of science at <a href="http://www.en.uni-muenchen.de/index.html">LMU</a>. During my master's, I spent five months at <a href="http://www.univ-paris-diderot.fr/">Université Paris Diderot</a>.</p>
+
+                <h2 id="service">Service</h2>
+                <h3>Program Committees</h3>
+                <table class="service-table">
+                    <tr><td class="year-cell">2026</td><td><a href="https://2025.splashcon.org/track/OOPSLA">OOPSLA</a>, <a href="https://sp2026.ieee-security.org/">S&P</a></td></tr>
+                    <tr><td class="year-cell">2025</td><td><a href="https://www.sp2025.ieee-security.org/">S&P</a></td></tr>
+                    <tr><td class="year-cell">2024</td><td><a href="https://asplos-conference.org/">ASPLOS</a>, <a href="https://pldi24.sigplan.org/">PLDI</a>, <a href="https://www.ieee-security.org/CSFWweb/">CSF</a>, <a href="https://confest2024.github.io/">CONCUR</a></td></tr>
+                    <tr><td class="year-cell">2023</td><td><a href="https://asplos-conference.org/">ASPLOS</a>, <a href="http://netys.net/">NETYS</a></td></tr>
+                    <tr><td class="year-cell">2022</td><td><a href="https://pldi22.sigplan.org/">PLDI</a>, <a href="https://floc2022.org/">CAV</a></td></tr>
+                    <tr><td class="year-cell">2021</td><td><a href="https://www.sigsac.org/ccs/CCS2021/">CCS</a>, <a href="http://netys.net/">NETYS</a>, <a href="https://raid2021.org/">RAID</a>, <a href="https://ccsw.io/">CCSW</a>, <a href="https://plas21.software.imdea.org/">PLAS</a></td></tr>
+                </table>
+
+                <h3>Co-Chairing & Organization</h3>
+                <table class="service-table">
+                    <tr><td class="year-cell">2023</td><td><a href="https://plas2022.github.io/">Workshop on Programming Languages and Analysis for Security (PLAS)</a></td></tr>
+                    <tr><td class="year-cell">2021</td><td><a href="https://popl21.sigplan.org/home/VMCAI-2021">VMCAI Artifact Evaluation</a></td></tr>
+                    <tr><td class="year-cell">2019</td><td><a href="http://netys.net/history/netys2019/workshops/index.html">Verification of Distributed Systems Workshop (VDS)</a></td></tr>
+                </table>
+
+                <h2 id="publications">Publications</h2>
+                <table class="publication-table">
+                    <tr>
+                        <td class="year-cell">Usenix Security'25</td>
+                        <td>Phantom Trails: Practical Pre-Silicon Discovery of Transient Data Leaks. Alvise de Faveri Tron, Raphael Isemann, Hany Ragab, Cristiano Giuffrida, <u>Klaus v. Gleissenthall</u>, Herbert Bos. [<a href="papers/phantom-trails.pdf">PDF</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">OOPSLA'24</td>
+                        <td>Refinement Type Refutations. Robin Webbers, <u>Klaus v. Gleissenthall</u>, Ranjit Jhala. [<a href="papers/refinement-refutations.pdf">PDF</a>][<a href="https://vusecpl.github.io/2024-06-29-type-refutations/">Blog</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">IEEE TDSC'24</td>
+                        <td>InvisiGuard: Data Integrity for Microcontroller-Based Devices via Hardware-Triggered Write Monitoring. Dongliang Fang, Anni Peng, Le Guan, Erik van der Kouwe, <u>Klaus v. Gleissenthall</u>, Wenwen Wang, Yuqing Zhang, Limin Sun. [<a href="papers/invisiguard.pdf">PDF</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">CCS'23</td>
+                        <td>Specification and Verification of Side-channel Security for Open-source Processors via Leakage Contracts. Zilong Wang, Gideon Mohr, <u>Klaus v. Gleissenthall</u>, Jan Reineke, Marco Guarnieri. <span class="award-emoji">🏆</span> Distinguished Paper Award. <span class="award-emoji">🏆</span> Finalist, Intel Hardware Security Award [<a href="papers/ccs2023.pdf">PDF</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">PLDI'23</td>
+                        <td>Don't Look UB: Exposing Sanitizer-Eliding Compiler Optimizations. Raphael Isemann, Cristiano Giuffrida, Herbert Bos, Erik van der Kouwe, <u>Klaus v. Gleissenthall</u>. [<a href="papers/dontlookub.pdf">PDF</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">ACSAC'23</td>
+                        <td>Triereme: Speeding up hybrid fuzzing through efficient query scheduling. Elia Geretto, Julius Hohnerlein, Cristiano Giuffrida, Herbert Bos, Erik Van Der Kouwe, <u>Klaus v. Gleissenthall</u>. [<a href="papers/triereme.pdf">PDF</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">OOPSLA'23</td>
+                        <td>Randomized Testing of Byzantine Fault Tolerant Algorithms. L. Winter, F. Buse, D. de Graaf, <u>Klaus v. Gleissenthall</u>, B. Kulahcioglu Ozkan. <span class="award-emoji">🏆</span> Distinguished Paper Award. [<a href="papers/byzzfuzz.pdf">PDF</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">LATTE'22</td>
+                        <td>Refinement Types for Hardware. Robin Webbers, <u>Klaus v. Gleissenthall</u>.</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">CCS'21</td>
+                        <td>Solver-Aided Constant-Time Hardware Verification. <u>Klaus v. Gleissenthall</u>, Rami Gökhan Kici, Deian Stefan and Ranjit Jhala. [<a href="papers/xenon.pdf">PDF</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">POPL'21</td>
+                        <td>Automatically Eliminating Speculative Leaks with Blade. Marco Vassena, Craig Disselkoen, <u>Klaus v. Gleissenthall</u>, Sunjay Cauligi, Rami Gökhan Kici, Dean Tullsen, Ranjit Jhala, Deian Stefan. <span class="award-emoji">🏆</span> Distinguished Paper Award. [<a href="papers/BLADE.pdf">PDF</a>][<a href="https://github.com/plsyssec/lucet-blade">Code</a>] [<a href="https://github.com/maxgallup/llvm-blade">LLVM Blade</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">PLDI'20</td>
+                        <td>Towards Constant-Time Foundations for the New Spectre Era. Sunjay Cauligi, Craig Disselkoen, <u>Klaus v. Gleissenthall</u>, Dean Tullsen, Deian Stefan, Tamara Rezk, Gilles Barthe. <span class="award-emoji">🏆</span> Honorable mention, Intel hardware security award. [<a href="papers/spectre-semantics.pdf">PDF</a>][<a href="https://www.youtube.com/watch?v=bLbR8x82KNg&ab_channel=ACMSIGPLAN">Talk</a>][<a href="https://pitchfork.programming.systems/">Code</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">USENIX Security'19</td>
+                        <td>IODINE: Verifying Constant-Time Execution of Hardware. <u>Klaus v. Gleissenthall</u>, Rami Gökhan Kici, Deian Stefan and Ranjit Jhala. [<a href="papers/iodine.pdf">PDF</a>][<a href="papers/iodine-slides.pdf">Slides</a>][<a href="https://iodine.programming.systems">Code</a>][<a href="https://www.youtube.com/watch?time_continue=1&v=4ZjZWGLvi2E">Talk</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">POPL'19</td>
+                        <td>Pretend Synchrony: Synchronous Verification of Asynchronous Distributed Programs. <u>Klaus v. Gleissenthall</u>, Rami Gökhan Kici, Alexander Bakst, Deian Stefan and Ranjit Jhala. [<a href="papers/pretend-synchrony.pdf">PDF</a>][<a href="papers/ps-slides.pdf">Slides</a>][<a href="https://github.com/gleissen/goolong">Code</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">OOPSLA'17</td>
+                        <td>Verifying Distributed Programs via Canonical Sequentialization. Alexander Bakst, <u>Klaus v. Gleissenthall</u>, Rami Gökhan Kici and Ranjit Jhala. [<a href="papers/brisk.pdf">PDF</a>][<a href="papers/brisk-slides.pdf">Slides</a>][<a href="https://github.com/abakst/brisk">Code</a>][<a href="https://github.com/gokhankici/brisk-benchmarks">Benchmarks</a>][<a href="https://github.com/abakst/ThequeFS">ThequeFS</a>][<a href="https://www.youtube.com/watch?v=o3d1lnLPjyA">Talk</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">PLDI'16</td>
+                        <td>Cardinalities and Universal Quantifiers for Verifying Parameterized Systems. <u>Klaus v. Gleissenthall</u>, Nikolaj Bjørner and Andrey Rybalchenko. [<a href="papers/sharpie.pdf">PDF</a>][<a href="papers/sharpie-slides.pdf">Slides</a>][<a href="https://www.youtube.com/watch?v=GzvgrWyTt6I">Talk</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">CAV'15</td>
+                        <td>Symbolic Polytopes for Quantitative Interpolation and Verification. <u>Klaus v. Gleissenthall</u>, Boris Köpf and Andrey Rybalchenko. [<a href="papers/symb-polytopes.pdf">PDF</a>][<a href="papers/cav-slides.pdf">Slides</a>][<a href="papers/symb-polytopes-tech.pdf">Extended Version</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">CONCUR'13</td>
+                        <td>An Epistemic Perspective on Consistency of Concurrent Computations. <u>Klaus v. Gleissenthall</u> and Andrey Rybalchenko. [<a href="papers/CONCUR13.pdf">PDF</a>][<a href="papers/CONCUR13Slides.pdf">Slides</a>]</td>
+                    </tr>
+                    <tr>
+                        <td class="year-cell">KI'11</td>
+                        <td>Bayesian Logic Networks and the Search for Samples with Backward Simulation and Abstract Constraint Learning. Dominik Jain, <u>Klaus v. Gleissenthall</u> and Michael Beetz.</td>
+                    </tr>
+                </table>
+
+                <p style="margin-top: 2rem;">See also my <a href="http://dblp.uni-trier.de/pers/hd/g/Gleissenthall:Klaus_von">DBLP</a> entry for a complete list of publications.</p>
+            </div>
+        </div>
     </div>
-<div id="right_col">
 
-    <h1>Klaus von Gleissenthall</h1>
+    <script>
+        function toggleNav() {
+            const dropdown = document.getElementById('navDropdown');
+            dropdown.classList.toggle('open');
+        }
 
-    I am a tenured Assistant Professor in Computer Science at the <a href="http://www.vu.nl/">Vrije
-    Universiteit Amsterdam</a>, where I work with the <a href="https://www.cs.vu.nl/~tcs/">theory group</a> and <a href="https://www.vusec.net/people/">VUSec</a>.
-    I'm also affiliated with the <a href="https://www.cwi.nl/en/groups/computer-security/"> Computer Security </a> group at <a href="https://www.cwi.nl/en">CWI</a>.
-    <br><br>
-    I work on methods that help practitioners write correct, secure and reliable
-    systems, where I focus on keeping user effort low. My research interests
-    span programming languages, security and systems. 
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('navDropdown');
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('open');
+            }
+        });
 
-    <br><br>
-    Here is my <a href="cv.pdf">CV</a>. 
-    <br><br>
-    Send me an email
-    <a href="mailto:kfl900@vu.nl">here</a>.
-    <br><br>
-    <a href="papers/statement.pdf">Research Statement</a> and <a href="papers/teaching-statement.pdf">Teaching Statement</a>.
-    <br><br>
-    If you click on the photo, there'll be more pictures.
-    <br><br>
-    I'm currently working with this talented group of researchers:
-    <ul>
-      <li>Robin Webbers (PhD, 2022-)</li>
-      <li>Alp Adnan Basar (PhD, 2024-)</li>
-      <li><a href="https://lpferreirinha.com/">Luís Ferreirinha</a>(PhD, 2024-)</li>
-      <li>Zunchen Huang (post-doc, 2024-)</li>
-      <li><a href="https://rschenck.com/">Robert Schenck</a> (post-doc, 2025-)</li>
-    </ul>
-    Check out our <a href="https://vusecpl.github.io">blog</a>.
-    <br><br>
-    <span class="jobfont">Open Positions:</span>
-    I'm looking for students at all levels. I have open positions for PhDs, and post-docs. If you're interested in the intersection of Security, Programming Languages and Formal Verification, please email me.
-    <br><br>
+        function togglePortrait() {
+            const image = document.getElementById('portrait');
+            const currentSrc = image.src;
+            
+            if (currentSrc.includes("pic.jpg")) {
+                image.src = "pic2.jpg";
+            } else if (currentSrc.includes("pic2.jpg")) {
+                image.src = "pic3.jpg";
+            } else if (currentSrc.includes("pic3.jpg")) {
+                image.src = "pic4.jpg";  
+            } else if (currentSrc.includes("pic4.jpg")) {
+                image.src = "pic5.jpg";
+            } else if (currentSrc.includes("pic5.jpg")) {
+                image.src = "pic.jpg";
+            } else if (currentSrc.includes("pic6.jpg")) {
+                image.src = "pic.jpg";
+            }
+        }
 
-    <h2>News</h2>
-    <ul>
-      <li> Our <a href="papers/refinement-refutations.pdf">paper</a> on refinement type refutations has been accepted at <a href="https://2024.splashcon.org/track/splash-2024-oopsla">OOPSLA'24</a>. Check out this <a href="https://vusecpl.github.io/2024-06-29-type-refutations/">blog post</a> where we describe the ideas. </li><br>    
-      <li>&#127942;&#127942;&#127942; I've been awarded the <a href="https://erc.europa.eu/news-events/news/erc-2023-starting-grants-results">ERC Starting Grant</a> (1.5 Mio € personal grant) for my research on building side-channel free systems. I will be hiring soon, please reach out if you're interested.</li><br> 
-      <li>&#127942; Our paper on <a href="papers/ccs2023.pdf">verifying leakage contracts for hardware</a> received an honorable mention in the Intel hardware security award'24.</li><br>
-      <li>I gave a talk at Utrecht University. You can find the slides <a href="papers/utrecht-slides.pdf">here</a>. </li><br>    
-      <li>&#127942; Our paper on <a href="papers/ccs2023.pdf">verifying leakage contracts for hardware</a> has received a distinguished paper award at <a href="https://www.sigsac.org/ccs/CCS2023/call-for-paper.html">CCS'23</a>.</li><br>    
-      <li>&#127942; Our paper "Randomized Testing of Byzantine Fault Tolerant Algorithms" has been awarded a distinguished paper award at <a href="https://2023.splashcon.org/track/splash-2023-oopsla">OOPSLA'23</a>. </li><br>    
-      <li>Our paper on <a href="papers/ccs2023.pdf">verifying leakage contracts for hardware</a>  has been accepted at <a href="https://www.sigsac.org/ccs/CCS2023/call-for-paper.html">CCS'23</a>.</li><br>    
-      <li>Our paper <a href="papers/dontlookub.pdf">"Don't look UB"</a> on finding compiler optimizations that remove (failing) sanitizer checks has been  accepted at <a href="https://pldi23.sigplan.org/track/pldi-2023-pldi">PLDI'23</a>.</li><br>    
-      <li>Our paper <a href="papers/byzzfuzz.pdf">ByzzFuzz</a> on random testing of Byzantine fault tolerance systems has been accepted at <a href="https://2023.splashcon.org/track/splash-2023-oopsla">OOPSLA'23</a>.</li><br>
-      <li> Check out this <a href="https://github.com/maxgallup/llvm-blade">LLVM implemetation</a> of Blade, written by my BSc student Max Gallup.</li><br>
-      <li>I'm serving on the PCs of <a href="https://pldi24.sigplan.org/">PLDI'24</a>, <a href="https://asplos-conference.org/">ASPLOS'24</a>, and <a href="https://www.ieee-security.org/CSFWweb/">CSF'24</a>.</li><br>
-      <li>I will be co-chairing the Workshop on Programming Languages and Analysis for Security (<a href="https://plas2022.github.io/">PLAS</a>) this years.</li><br>
-      <li>I'm serving on the PC of <a href="https://asplos-conference.org/">ASPLOS'23</a>.</li><br>
-      <li>I will give a talk at <a href="https://pldi22.sigplan.org/home/cora-2022">Commute</a> which is co-located with PLDI'22.</li><br>
-      <li> Our paper on refinement types for hardware has been accepted at <a href="https://capra.cs.cornell.edu/latte22/">LATTE'22</a>. You can watch the talk <a href="https://www.youtube.com/watch?v=sas7Lxm2AH0">here</a>.</li><br>
-      <li> <a href="papers/xenon.pdf">Xenon</a>, our paper on making timing verification of hardware more user-friendly was accepted to <a href="https://www.sigsac.org/ccs/CCS2021/">CCS'21</a>.</li> <br>
-      <li> I will be serving on the PCs of <a href="https://pldi22.sigplan.org/">PLDI'22</a>, <a href="https://floc2022.org/">CAV'22</a>, <a href="https://ccsw.io/">CCSW'21</a>, and <a href="https://plas21.software.imdea.org/">PLAS'21</a>.</li><br>
-      <li> &#127942; Our <a href="papers/spectre-semantics.pdf"> paper</a> on semantics for speculative execution was a <a href="https://blogs.intel.com/technology/2021/05/intel-announces-the-winners-of-the-inaugural-hardware-security-academic-award/#gs.2i800g">finalist</a> (honorable mention) in the intel hardware security award.</li><br>
-      <li> Check out our new <a href="https://blog.sigplan.org/2021/04/21/automatically-eliminating-speculative-leaks-from-cryptographic-code-with-blade/">blog post</a> on Blade in Sigplan PL Perspective.</li><br>
-      <li> &#127942; Blade wins distinguished paper award at POPL.</li><br>
-      <li> New draft: <a href="https://arxiv.org/abs/2104.00461">Solver-Aided Constant-Time Circuit Verification</a>.</li><br>
-      <li>I will be serving on the PC of <a href="https://raid2021.org/">RAID'21</a>.</li><br>
-      <li>I will be serving on the PC of <a href="https://www.sigsac.org/ccs/CCS2021/">CCS'21</a>.</li><br>
-      <li>I will be serving on the PC of <a href="http://netys.net/">NETYS'21</a>.</li><br>
-        <li>Blade accepted to <a href="https://popl21.sigplan.org/">POPL'21</a>.</li><br>
-        <li>I'm co-chairing the <a href="https://popl21.sigplan.org/home/VMCAI-2021#Call-for-Artifacts">VMCAI'21</a> artifact evaluation.</li><br>
-        <li>Our paper on speculative execution semantics has been accepted to <a href="https://conf.researchr.org/home/pldi-2020">PLDI'20</a>. </li><br>
-        <li><a href="papers/iodine.pdf">Iodine</a> accepted at <a href="https://www.usenix.org/conference/usenixsecurity19">USENIX Security'19</a>.</li><br>
-        <li>I'm serving on the Artifact Evaluation Committee of<a href="http://i-cav.org/2020/organization/"> CAV'20</a>.</li><br>
-        <li>Visited <a href="https://www.mpi-sws.org/">MPI-SWS</a> and <a href="https://www.inria.fr/en/teams/indes">INRIA M&eacute;diterran&eacute;e</a>.</li><br>
-        <li>Attended the <a href="https://keystone-enclave.org/open-source-enclaves-workshop/">Open-source enclaves workshop</a> in Berkeley.</li> <br>
-        <li>I'm co-orgranizing the <a href="https://goto.ucsd.edu/vds/">Workshop on Verification of Distributed Systems</a> (VDS)'19.</li><br>
-  </ul>
-  <h2>Bio</h2>
-  Before coming to the <a href="http://www.vu.nl/">VU</a>, I was a post-doc in the <a
-  href="http://cseweb.ucsd.edu/groups/progsys/"> Programming
-Systems</a> group at <a href="http://ucsd.edu/"> UCSD</a> where I
-worked with <a href="http://ranjitjhala.github.io">Ranjit Jhala</a> and <a href="http://cseweb.ucsd.edu/~dstefan/">Deian Stefan</a>.
-  Before that, I was a PhD student at <a href="http://www.tum.de">
-  TUM</a> where I was advised by <a
-  href="http://research.microsoft.com/en-us/people/rybal/"> Andrey
-  Rybalchenko</a> and funded through a <a
-  href="http://research.microsoft.com/">Microsoft Research</a>
-  scholarship. During my PhD I worked at <a
-  href="http://research.microsoft.com/en-us/labs/cambridge/">
-  Microsoft Research Cambridge</a> as an intern and
-  spent some more time there as a visitor. I received both a BSc. and MSc.
-  in computer science from TUM with a minor in logic and philosophy of science at <a
-   href="http://www.en.uni-muenchen.de/index.html">LMU</a>. During my master's, I spent five months at <a
-   href="http://www.univ-paris-diderot.fr/">Universit&eacute; Paris
-  Diderot</a>.
-  <br><br>
-  <h2>Service</h2>
-  Program Committees:
-  <table>
-    <tr>
-      <td>2026</td><td><a href="https://2025.splashcon.org/track/OOPSLA">OOPSLA</a>, <a href="https://sp2026.ieee-security.org/">S&P</a>
-    </tr>
-    <tr>
-      <td>2025</td><td><a href="https://www.sp2025.ieee-security.org/">S&P</a>
-    </tr>
-    <tr>
-    <td>2024</td><td><a href="https://asplos-conference.org/">ASPLOS</a>, <a href="https://pldi24.sigplan.org/">PLDI</a>, <a href="https://www.ieee-security.org/CSFWweb/">CSF</a>, <a href="https://confest2024.github.io/">CONCUR</a></td>  
-    </tr>
-    <tr>
-      <td>2023</td><td><a href="https://asplos-conference.org/">ASPLOS</a>, <a href="http://netys.net/">NETYS</a></td>  
-    </tr>
-    <tr>
-      <td>2022</td><td><a href="https://pldi22.sigplan.org/">PLDI</a>, <a href="https://floc2022.org/">CAV</a></td>  
-    </tr>
-  <tr>
-    <td>2021</td><td><a href="https://www.sigsac.org/ccs/CCS2021/">CCS</a>, <a href="http://netys.net/">NETYS</a>, <a href="https://raid2021.org/">RAID</a>, <a href="https://ccsw.io/">CCSW</a>, <a href="https://plas21.software.imdea.org/">PLAS</a> </td>  
-  </tr>
-  <tr>
-    <td>2020</td><td><a href="https://popl20.sigplan.org/home/prisc-2020">PriSC</a></td> 
-  </tr>
-  <tr>
-    <td>2019</td><td><a href="https://www.andrew.cmu.edu/user/pmardzie/plas2019/">PLAS</a></td> 
-  </tr>
-  </table> 
-  <br> 
-  Co-Chairing & Organization:
-  <table>
-    <tr>
-      <td>2023</td><td><a href="https://plas2022.github.io/"> Workshop on Programming Languages and Analysis for Security (PLAS).</a></td>
-    </tr>
-    
-    <tr>
-      <td>2021</td><td><a href="https://popl21.sigplan.org/home/VMCAI-2021">VMCAI Artifact Evaluation</a></td>
-    </tr>
-    <tr>
-      <td>2019</td><td><a href="http://netys.net/history/netys2019/workshops/index.html">Verification of Distributed Systems Workshop (VDS)</a></td>
-    </tr>
-  </table>
-
- 
-  <h2>Publications</h2>
-<table style="width:100%">
-  <tr>
-    <tr>
-      <td>Usenix Security'25 </td>
-    <td>
-      Phantom Trails: Practical Pre-Silicon Discovery of Transient Data Leaks. Alvise de Faveri Tron, Raphael Isemann, Hany Ragab, Cristiano Giuffrida, <u>Klaus v. Gleissenthall</u>, Herbert Bos. [<a href="papers/phantom-trails.pdf">PDF</a>]</td>
-  </td>
-  </tr>
-  <tr>
-    <tr>
-      <td>OOPSLA'24 </td>
-    <td>
-      Refinement Type Refutations. Robin Webbers, <u>Klaus v. Gleissenthall</u>, Ranjit Jhala. [<a href="papers/refinement-refutations.pdf">PDF</a>][<a href="https://vusecpl.github.io/2024-06-29-type-refutations/">Blog</a>]</td>
-  </td>
-  </tr>
-  <tr>
-    <tr>
-      <td>IEEE TDSC'24 </td>
-    <td>
-      InvisiGuard: Data Integrity for Microcontroller-Based
-Devices via Hardware-Triggered Write Monitoring. 
-Dongliang Fang, Anni Peng, Le Guan, Erik van der Kouwe, <u>Klaus v. Gleissenthall</u>, Wenwen Wang, Yuqing Zhang, Limin Sun. [<a href="papers/invisiguard.pdf">PDF</a>]</td>
-  </td>
-  </tr>
-  <tr>
-    <tr>
-      <td>CCS'23 </td>
-    <td>
-      Specification and Verification of Side-channel Security for
-Open-source Processors via Leakage Contracts. Zilong Wang, Gideon Mohr, <u>Klaus v. Gleissenthall</u>, Jan Reineke, Marco Guarnieri. Distinguished Paper Award. &#127942; Finalist, Intel Hardware Security Award  &#127942; [<a href="papers/ccs2023.pdf">PDF</a>]</td>
-  </td>
-  </tr>
-  <tr>
-    <tr>
-      <td>PLDI'23 </td>
-    <td>
-      Don't Look UB: Exposing Sanitizer-Eliding Compiler Optimizations. Raphael Isemann, Cristiano Giuffrida, Herbert Bos, Erik van der Kouwe, <u>Klaus v. Gleissenthall</u>.[<a href="papers/dontlookub.pdf">PDF</a>]</td>
-  </td>
-</tr>
-<tr>
-  <td>ACSAC'23 </td>
-<td>
-  Triereme: Speeding up hybrid fuzzing through efficient query scheduling. Elia Geretto, Julius Hohnerlein, Cristiano Giuffrida, Herbert Bos, Erik Van Der Kouwe, <u>Klaus v. Gleissenthall</u>.[<a href="papers/triereme.pdf">PDF</a>]</td>
-</td>
-</tr>
-  </tr>
-    <tr>
-      <td>OOPSLA'23 </td>
-    <td>
-    Randomized Testing of Byzantine Fault Tolerant Algorithms. L. Winter, F. Buse, D. de Graaf, <u>Klaus v. Gleissenthall</u>, B. Kulahcioglu Ozkan. Distinguished Paper Award. &#127942; [<a href="papers/byzzfuzz.pdf">PDF</a>]</td>
-  </td>
-  </tr>
-  <tr>
-    <td>LATTE'22 </td>
-  <td>
-    Refinement Types for Hardware. Robin Webbers, <u>Klaus v. Gleissenthall</u>.</td>
-</td>
-</tr> 
-    <tr>
-      <td>CCS'21 </td>
-    <td>
-    Solver-Aided Constant-Time Hardware Verification. <u>Klaus v. Gleissenthall</u>, Rami G&ouml;khan Kici,  Deian Stefan and Ranjit Jhala. [<a href="papers/xenon.pdf">PDF</a>]</td>
-  </td>
-  </tr>
-  <tr>
-    <tr>
-      <td>POPL'21 </td>
-    <td>Automatically Eliminating Speculative Leaks with Blade. Marco Vassena, Craig Disselkoen, <u>Klaus v. Gleissenthall</u>,
-      Sunjay Cauligi, Rami G&ouml;khan Kici, Dean Tullsen, Ranjit Jhala, Deian Stefan. 
-      Distinguished Paper Award. &#127942;
-      [<a href="papers/BLADE.pdf">PDF</a>][<a href="https://github.com/plsyssec/lucet-blade">Code</a>] [<a href="https://github.com/maxgallup/llvm-blade">LLVM Blade</a>]</td>
-  </td>
-  </tr>
-    <td>PLDI'20  </td>
-  <td>Towards Constant-Time Foundations for the New Spectre Era. Sunjay Cauligi, Craig Disselkoen, <u>Klaus v. Gleissenthall</u>,
-Dean Tullsen, Deian Stefan, Tamara Rezk, Gilles Barthe. Honorable mention, Intel hardware security award. &#127942; [<a href="papers/spectre-semantics.pdf">PDF</a>][<a href="https://www.youtube.com/watch?v=bLbR8x82KNg&ab_channel=ACMSIGPLAN">Talk</a>][<a href="https://pitchfork.programming.systems/">Code</a>]</td>
-</td>
-</tr>
-      <tr>
-        <td>USENIX Security'19 </td>
-        <td>IODINE: Verifying Constant-Time Execution of Hardware. <u>Klaus v. Gleissenthall</u>, Rami G&ouml;khan Kici, Deian Stefan and
-          Ranjit Jhala. [<a href="papers/iodine.pdf">PDF</a>][<a href="papers/iodine-slides.pdf">Slides</a>][<a href="https://iodine.programming.systems">Code</a>][<a href="https://www.youtube.com/watch?time_continue=1&v=4ZjZWGLvi2E">Talk</a>]
-        </td>
-      </tr>
-    <td>POPL'19</td>
-    <td>Pretend Synchrony: Synchronous Verification of Asynchronous Distributed Programs. <u>Klaus v. Gleissenthall</u>, Rami G&ouml;khan Kici, Alexander Bakst, Deian Stefan and
-      Ranjit Jhala. [<a href="papers/pretend-synchrony.pdf">PDF</a>][<a href="papers/ps-slides.pdf">Slides</a>][<a href="https://github.com/gleissen/goolong">Code</a>]
-    </td>
-  </tr>
-    <tr>
-    <td>OOPSLA'17</td>
-    <td>Verifying Distributed Programs via Canonical
-      Sequentialization. With Alexander Bakst, <u>Klaus v. Gleissenthall</u>, Rami G&ouml;khan Kici and
-      Ranjit Jhala.[<a href="papers/brisk.pdf">PDF</a>]
-      [<a href="papers/brisk-slides.pdf">Slides</a>]
-      [<a href="https://github.com/abakst/brisk">Code</a>]
-      [<a href="https://github.com/gokhankici/brisk-benchmarks">Benchmarks</a>]
-      [<a href="https://github.com/abakst/ThequeFS">ThequeFS</a>]
-       [<a href=" https://www.youtube.com/watch?v=o3d1lnLPjyA">Talk</a>]
-    </td>
-  </tr>
-  <tr>
-    <td>PLDI'16</td>
-    <td>Cardinalities and Universal Quantifiers for Verifying
-    Parameterized Systems. <u>Klaus v. Gleissenthall</u>, Nikolaj Bj&oslash;rner and Andrey
-    Rybalchenko.[<a href="papers/sharpie.pdf">PDF</a>]
-      [<a href="papers/sharpie-slides.pdf">Slides</a>]
-      [<a href=" https://www.youtube.com/watch?v=GzvgrWyTt6I">Talk</a>]
-
-    </td>
-  </tr>
-  <tr>
-    <td>CAV'15</td>
-    <td>  Symbolic Polytopes for Quantitative Interpolation and
-    Verification. <u>Klaus v. Gleissenthall</u>, Boris K&ouml;pf and Andrey Rybalchenko.
-  <br>
-  [<a href="papers/symb-polytopes.pdf">PDF</a>]
-  [<a href="papers/cav-slides.pdf">Slides</a>] [<a
-  href="papers/symb-polytopes-tech.pdf">Extended Version</a>]
-    </td>
-  </tr>
-  <tr>
-    <td>CONCUR'13</td>
-    <td>  An Epistemic Perspective on Consistency of Concurrent
-  Computations. <u>Klaus v. Gleissenthall</u> and Andrey Rybalchenko. [<a
-  href="papers/CONCUR13.pdf">PDF</a>] [<a
-  href="papers/CONCUR13Slides.pdf">Slides</a>]</td>
-  </tr>
-  <td>KI'11</td>
-  <td>Bayesian Logic Networks and the Search for Samples with Backward
-  Simulation and Abstract Constraint Learning.  Dominik Jain, <u>Klaus v. Gleissenthall</u> and Michael Beetz. </td>
-  <tr>
-  </tr>
-</table>
-<br>
-See also my <a
-  href="http://dblp.uni-trier.de/pers/hd/g/Gleissenthall:Klaus_von">DBLP</a>
-  entry.
-<br><br><br>
-</div>
-</div>
-</body> </html>
+        // Add smooth loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
